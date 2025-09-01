@@ -1,82 +1,96 @@
-# Import a library of functions called 'pygame'
-import pygame
-import random
-# Initialize the game engine
-pygame.init()
+# Draw a Panda using Turtle Graphics
+# Import turtle package
+import turtle
 
-# Define some colors
-BLACK = (   0,   0,   0)
-WHITE = ( 255, 255, 255)
-GREEN = (   0, 255,   0)
-RED = ( 255,   0,   0)
-BLUE = (   0,   0, 255)
-PI = 3.141592653
+# Creating a turtle object(pen)
+pen = turtle.Turtle()
 
-size = (700, 500)
-screen = pygame.display.set_mode(size)
-pygame.display.set_caption("Draw")
-# Loop until the user clicks the close button.
-close_screen = False
+# Defining method to draw a colored circle
+# with a dynamic radius
+def ring(col, rad):
 
-# Used to manage how fast the screen updates
+	# Set the fill
+	pen.fillcolor(col)
 
-clock = pygame.time.Clock()
+	# Start filling the color
+	pen.begin_fill()
 
-# First, clear the screen to white. Don't put other drawing commands above this,
-# or they will be erased with this command.
-screen.fill(WHITE)
-pygame.display.flip()
+	# Draw a circle
+	pen.circle(rad)
 
+	# Ending the filling of the color
+	pen.end_fill()
 
-# this is testing
-def testDraw():
-    rand_x = random.randrange(10, 600)
-    rand_y = random.randrange(10, 400)
-    colors = [BLACK, WHITE, GREEN, RED, BLUE]
-    # color_pick = BLACK
-    color_pick = colors[random.randrange(0,5)]
-    # pygame.draw.rect(screen, color_pick, [rand_x, rand_y, 100, 100], 2)
-    pygame.draw.line(screen, color_pick, (rand_x, rand_y + 100), (rand_x + 100, rand_y + 100), 2)
-    pygame.draw.line(screen, color_pick, (rand_x - 100, rand_y), (rand_x + 200, rand_y), 2)
-    pygame.draw.arc(screen, color_pick, (rand_x - 100, rand_y - 100, 200, 200), PI, 1.5 * PI, 2)
-    pygame.draw.arc(screen, color_pick, (rand_x, rand_y - 100, 200, 200), 1.5 * PI, 0, 2)
-    pygame.draw.polygon(screen, color_pick, [[rand_x, rand_y - 75], [rand_x + 50, rand_y - 125], [rand_x + 50, rand_y - 25]], 2)
-    pygame.draw.line(screen, color_pick, (rand_x + 50, rand_y - 25), (rand_x + 50, rand_y), 2)
-    pygame.display.flip()
+##########################Main Section#############################
 
-def drawShip(color, position_x, position_y):
-    colors = [BLACK, WHITE, GREEN, RED, BLUE]
-    color_pick = colors[random.randrange(0,5)]
-    # pygame.draw.rect(screen, color_pick, [rand_x, rand_y, 100, 100], 2)
-    pygame.draw.line(screen, color, (position_x, position_y + 100), (position_x + 100, position_y + 100), 2)
-    pygame.draw.line(screen, color, (position_x - 100, position_y), (position_x + 200, position_y), 2)
-    pygame.draw.arc(screen, color, (position_x - 100, position_y - 100, 200, 200), PI, 1.5 * PI, 2)
-    pygame.draw.arc(screen, color, (position_x, position_y - 100, 200, 200), 1.5 * PI, 0, 2)
-    pygame.draw.polygon(screen, color, [[position_x, position_y - 75], [position_x + 50, position_y - 125], [position_x + 50, position_y - 25]], 2)
-    pygame.draw.line(screen, color, (position_x + 50, position_y - 25), (position_x + 50, position_y), 2)
-    pygame.display.flip()
+# pen.up			 --> move turtle to air
+# pen.down		 --> move turtle to ground
+# pen.setpos		 --> move turtle to given position
+# ring(color, radius) --> draw a ring of specified color and radius
+###################################################################
 
+##### Draw ears #####
+# Draw first ear
+pen.up()
+pen.setpos(-35, 95)
+pen.down
+ring('black', 15)
 
+# Draw second ear
+pen.up()
+pen.setpos(35, 95)
+pen.down()
+ring('black', 15)
 
-while not close_screen:
+##### Draw face #####
+pen.up()
+pen.setpos(0, 35)
+pen.down()
+ring('white', 40)
 
-    # -------- Main Program Loop -----------
-    # --- Main event loop
-    for event in pygame.event.get(): # User did something
-        if event.type == pygame.QUIT: # If user clicked close
-            close_screen = True # Flag that we are done so we exit this loop
-        elif event.type == pygame.KEYDOWN:
-            testDraw()
-    # --- Game logic should go here
+##### Draw eyes black #####
 
-    # for i in range(100):
-    #     testDraw()
-    # --- Drawing code should go here
-    drawShip(BLACK, 500, 200)
-    drawShip(RED, 200, 200)
-    drawShip(GREEN, 400, 300)
-    # --- Go ahead and update the screen with what we've drawn.
-    # pygame.display.flip()
+# Draw first eye
+pen.up()
+pen.setpos(-18, 75)
+pen.down
+ring('black', 8)
 
-    # --- Limit to 60 frames per second
-    clock.tick(60)
+# Draw second eye
+pen.up()
+pen.setpos(18, 75)
+pen.down()
+ring('black', 8)
+
+##### Draw eyes white #####
+
+# Draw first eye
+pen.up()
+pen.setpos(-18, 77)
+pen.down()
+ring('white', 4)
+
+# Draw second eye
+pen.up()
+pen.setpos(18, 77)
+pen.down()
+ring('white', 4)
+
+##### Draw nose #####
+pen.up()
+pen.setpos(0, 55)
+pen.down
+ring('balck', 5)
+
+##### Draw mouth #####
+pen.up()
+pen.setpos(0, 55)
+pen.down()
+pen.right(90)
+pen.circle(5, 180)
+pen.up()
+pen.setpos(0, 55)
+pen.down()
+pen.left(360)
+pen.circle(5, -180)
+pen.hideturtle()
